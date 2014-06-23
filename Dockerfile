@@ -24,7 +24,13 @@ RUN mkdir ~/.starcluster
 RUN mkdir ~/.starcluster/plugins
 
 # Copy local starcluster config file to container
-COPY ~/.starcluster/config -O ~/.starcluster/config
+ADD ~/.starcluster/config -O ~/.starcluster/config
 
-# Copy stardocker plugin to container
-RUN wget https://github.com/dimenwarper/stardocker/stardocker_config.py -O ~/.starcluster/plugins/stardocker_config.py
+# Install stardocker utilities
+ADD bin/set_docker_containers.py /bin/set_docker_containers
+ADD bin/set_s3.py /bin/set_s3
+ADD bin/run_container.py /bin/run_container
+ADD stardocker/ /stardocker/
+
+# TODO: Need to fix the following with a proper stardocker install
+RUN export PYTHONPATH=$PYTHONPATH:/:/stardocker/
