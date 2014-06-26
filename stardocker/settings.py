@@ -1,3 +1,3 @@
-WORKDIR = '/stardocker/'
+STARCLUSTER_CONFIG = '/home/tsuname/.starcluster/config'
 
-CONFIG = WORKDIR + 'config.txt'
+CONFIG_DIR = '/home/tsuname/.stardocker/'
